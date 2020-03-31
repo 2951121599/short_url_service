@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<body>
+<input type="text" name="long_url" id="long_url" placeholder="请输入长链接">
+<input type="submit" id="submit" value="缩短网址">
+<h4>短网址:</h4>
+<input type="text" name="" id="short_url" value="">
+<script>
+    $('#submit').click(function () {
+        var long_url = $('#long_url').val()
+        console.log(long_url)
+        $.ajax({
+            url: '/api/v1/change',
+            type: 'post',
+            data: {'long_url': long_url},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+                short_url = data.short_url
+                $('#short_url').val(short_url)
+            },
+        })
+    })
+</script>
+</body>
+</html>
